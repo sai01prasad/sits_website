@@ -14,7 +14,11 @@ export function HeroSection() {
       const stored = localStorage.getItem("theme");
       if (stored === "dark") return true;
       if (stored === "light") return false;
-      if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) return true;
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      )
+        return true;
       return document.documentElement.classList.contains("dark");
     } catch (e) {
       return false;
@@ -50,10 +54,9 @@ export function HeroSection() {
 
   return (
     <div className="min-h-screen flex  flex-col items-center justify-center">
-      
       <div className="px-2 sm:px-4 relative flex flex-col items-center justify-center">
         <div className="relative w-full flex items-center justify-center">
-          <h1 className="relative z-10 mx-auto max-w-5xl text-center text-3xl sm:text-4xl md:text-5xl lg:text-8xl xl:text-9xl font-bold text-slate-700 dark:text-slate-100 leading-tight">
+          <h1 className="relative z-10 mx-auto max-w-5xl text-center text-3xl sm:text-5xl md:text-5xl lg:text-8xl xl:text-9xl font-bold text-slate-700 dark:text-slate-100 leading-tight">
             {"Sai IT Solutions".split(" ").map((word, index) => (
               <motion.span
                 key={index}
