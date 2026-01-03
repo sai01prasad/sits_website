@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { motion } from "motion/react";
+import { Boxes } from "./ui/background-boxes";
+import { BackgroundBeams } from "./ui/background-beams";
 
 export function HeroSection() {
   const [isDark, setIsDark] = useState<boolean>(() => {
@@ -42,6 +44,7 @@ export function HeroSection() {
 
   return (
     <div className="min-h-screen flex  flex-col items-center justify-center">
+      
       <div className="px-2 sm:px-4 relative flex flex-col items-center justify-center">
         <div className="relative w-full flex items-center justify-center">
           <h1 className="relative z-10 mx-auto max-w-5xl text-center text-3xl sm:text-4xl md:text-5xl lg:text-8xl xl:text-9xl font-bold text-slate-700 dark:text-slate-100 leading-tight">
@@ -123,6 +126,7 @@ export function HeroSection() {
           </button>
         </motion.div>
       </div>
+      <BackgroundBeams />
     </div>
   );
 }
