@@ -43,15 +43,13 @@ export const SparklesCore = (props: ParticlesProps) => {
       const stored = localStorage.getItem("theme");
       if (stored === "dark") return true;
       if (stored === "light") return false;
-      return (
-        typeof window !== "undefined" &&
-        document.documentElement.classList.contains("dark")
-      );
+      // Default to dark mode if no stored preference
+      if (typeof window !== "undefined") {
+        return document.documentElement.classList.contains("dark") || true;
+      }
+      return true;
     } catch (e) {
-      return (
-        typeof window !== "undefined" &&
-        document.documentElement.classList.contains("dark")
-      );
+      return true; // Default to dark mode on any error
     }
   });
 

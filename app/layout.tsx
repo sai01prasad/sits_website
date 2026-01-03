@@ -25,6 +25,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const stored = localStorage.getItem('theme');
+                  const isDark = stored === 'light' ? false : true;
+                  if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    document.body.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                    document.body.classList.remove('dark');
+                  }
+                } catch (e) {
+                  document.documentElement.classList.add('dark');
+                  document.body.classList.add('dark');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

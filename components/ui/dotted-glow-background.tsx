@@ -62,13 +62,38 @@ export const DottedGlowBackground = ({
 }: DottedGlowBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [resolvedColor, setResolvedColor] = useState<string>(color);
-  const [resolvedGlowColor, setResolvedGlowColor] = useState<string>(glowColor);
+
+  // Initialize with a function that properly detects dark mode
+  const [resolvedColor, setResolvedColor] = useState<string>(() => {
+    // For initial state, we check for dark mode default and use darkColor if available
+    try {
+      const isDarkDefault = true; // Default to dark mode
+      if (isDarkDefault && darkColor) {
+        return darkColor;
+      }
+    } catch (e) {
+      // Fallback
+    }
+    return color;
+  });
+
+  const [resolvedGlowColor, setResolvedGlowColor] = useState<string>(() => {
+    // For initial state, we check for dark mode default and use darkGlowColor if available
+    try {
+      const isDarkDefault = true; // Default to dark mode
+      if (isDarkDefault && darkGlowColor) {
+        return darkGlowColor;
+      }
+    } catch (e) {
+      // Fallback
+    }
+    return glowColor;
+  });
 
   // Resolve CSS variable value from the container or root
   const resolveCssVariable = (
     el: Element,
-    variableName?: string,
+    variableName?: string
   ): string | null => {
     if (!variableName) return null;
     const normalized = variableName.startsWith("--")
@@ -87,10 +112,10 @@ export const DottedGlowBackground = ({
     const root = document.documentElement;
     if (root.classList.contains("dark")) return true;
     if (root.classList.contains("light")) return false;
-    return (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    );
+    const mql =
+      window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+    // Default to dark mode if no preference is detected
+    return mql ? mql.matches : true;
   };
 
   // Keep resolved colors in sync with theme changes and prop updates
@@ -222,12 +247,12 @@ export const DottedGlowBackground = ({
           Math.min(width, height) * 0.1,
           width * 0.5,
           height * 0.5,
-          Math.max(width, height) * 0.7,
+          Math.max(width, height) * 0.7
         );
         grad.addColorStop(0, "rgba(0,0,0,0)");
         grad.addColorStop(
           1,
-          `rgba(0,0,0,${Math.min(Math.max(backgroundOpacity, 0), 1)})`,
+          `rgba(0,0,0,${Math.min(Math.max(backgroundOpacity, 0), 1)})`
         );
         ctx.fillStyle = grad as unknown as CanvasGradient;
         ctx.fillRect(0, 0, width, height);
