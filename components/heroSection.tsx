@@ -10,20 +10,26 @@ import { BackgroundBeams } from "./ui/background-beams";
 export function HeroSection() {
   const [isDark, setIsDark] = useState<boolean>(() => {
     try {
+      if (typeof window === "undefined") return false;
       const stored = localStorage.getItem("theme");
       if (stored === "dark") return true;
       if (stored === "light") return false;
-      // Default to dark mode if no stored preference
-      if (typeof window !== "undefined") {
-        return document.documentElement.classList.contains("dark") || true;
-      }
-      return true;
+      if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) return true;
+      return document.documentElement.classList.contains("dark");
     } catch (e) {
-      return true; // Default to dark mode on any error
+      return false;
     }
   });
+  const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
+    // Ensure state matches the actual document class on mount
+    try {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    } catch (err) {
+      // ignore
+    }
+    setMounted(true);
     const handler = (e: Event) => {
       try {
         const ev = e as CustomEvent<{ isDark: boolean }>;
@@ -58,7 +64,9 @@ export function HeroSection() {
                   delay: index * 0.1,
                   ease: "easeInOut",
                 }}
-                className="mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block"
+                className={
+                  "mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text  text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 drop-shadow-md dark:drop-shadow-2xl"
+                }
               >
                 {word}
               </motion.span>
@@ -80,14 +88,16 @@ export function HeroSection() {
               className="w-full h-full"
             />
 
-            {/* Radial Gradient to prevent sharp edges */}
-            <div
-              className={
-                "absolute inset-0 w-full h-full " +
-                (isDark ? "bg-black" : "bg-white/70") +
-                " [mask-image:radial-gradient(180px_100px_at_top,transparent_20%,white)] sm:[mask-image:radial-gradient(280px_150px_at_top,transparent_20%,white)] md:[mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)] lg:[mask-image:radial-gradient(450px_250px_at_top,transparent_20%,white)] z-0"
-              }
-            ></div>
+            {/* Radial Gradient to prevent sharp edges (render after mount to avoid theme flicker) */}
+            {mounted && (
+              <div
+                className={
+                  "absolute inset-0 w-full h-full " +
+                  (isDark ? "bg-black" : "bg-white/70") +
+                  " [mask-image:radial-gradient(180px_100px_at_top,transparent_20%,white)] sm:[mask-image:radial-gradient(280px_150px_at_top,transparent_20%,white)] md:[mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)] lg:[mask-image:radial-gradient(450px_250px_at_top,transparent_20%,white)] z-0"
+                }
+              ></div>
+            )}
           </div>
         </div>
         <motion.p

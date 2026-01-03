@@ -27,31 +27,31 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <script
+          // Run before React hydration to avoid theme flash; default to dark
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
-                  const stored = localStorage.getItem('theme');
-                  const isDark = stored === 'light' ? false : true;
-                  if (isDark) {
-                    document.documentElement.classList.add('dark');
-                    document.body.classList.add('dark');
-                  } else {
+                  var theme = localStorage.getItem('theme');
+                  if (theme === 'light') {
                     document.documentElement.classList.remove('dark');
-                    document.body.classList.remove('dark');
+                    return;
                   }
-                } catch (e) {
+                  if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    return;
+                  }
+                  // Default to dark mode when no explicit preference
                   document.documentElement.classList.add('dark');
-                  document.body.classList.add('dark');
+                } catch (e) {
+                  // ignore
                 }
               })();
             `,
           }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
