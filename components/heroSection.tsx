@@ -82,7 +82,7 @@ export function HeroSection() {
             <div className="absolute inset-x-8 sm:inset-x-12 md:inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/3 sm:w-1/4 blur-sm" />
             <div className="absolute inset-x-8 sm:inset-x-12 md:inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/3 sm:w-1/4" />
 
-            {/* Core component */}
+            {/* Core component
             <SparklesCore
               background="transparent"
               minSize={0.3}
@@ -92,7 +92,7 @@ export function HeroSection() {
             />
 
             {/* Radial Gradient to prevent sharp edges (render after mount to avoid theme flicker) */}
-            {mounted && (
+            {/* {mounted && (
               <div
                 className={
                   "absolute inset-0 w-full h-full " +
@@ -100,7 +100,7 @@ export function HeroSection() {
                   " [mask-image:radial-gradient(180px_100px_at_top,transparent_20%,white)] sm:[mask-image:radial-gradient(280px_150px_at_top,transparent_20%,white)] md:[mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)] lg:[mask-image:radial-gradient(450px_250px_at_top,transparent_20%,white)] z-0"
                 }
               ></div>
-            )}
+            )}  */}
           </div>
         </div>
         <motion.p

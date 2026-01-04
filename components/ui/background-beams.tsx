@@ -81,7 +81,7 @@ export const BackgroundBeams = React.memo(
         >
           <style>{`
             @media (prefers-color-scheme: dark) {
-              .beam-stop-1 { stop-color: #404040; }
+              .beam-stop-1 { stop-color: #FFFFFF; }
               .beam-stop-bg { stop-color: #1a1a1a; }
             }
             @media (prefers-color-scheme: light) {
