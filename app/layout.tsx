@@ -20,14 +20,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+    >
       <head>
         <script
-          // Run before React hydration to avoid theme flash; default to dark
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -41,17 +43,14 @@ export default function RootLayout({
                     document.documentElement.classList.add('dark');
                     return;
                   }
-                  // Default to dark mode when no explicit preference
                   document.documentElement.classList.add('dark');
-                } catch (e) {
-                  // ignore
-                }
+                } catch (e) {}
               })();
             `,
           }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className="antialiased font-sans">
         {children}
       </body>
     </html>
