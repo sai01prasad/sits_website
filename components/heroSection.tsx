@@ -56,7 +56,7 @@ export function HeroSection() {
     <div className="min-h-screen flex  flex-col items-center justify-center">
       <div className="px-2 sm:px-4 relative flex flex-col items-center justify-center">
         <div className="relative w-full flex items-center justify-center">
-          <h1 className="relative z-10 mx-auto max-w-5xl text-center text-3xl sm:text-5xl md:text-5xl lg:text-8xl xl:text-9xl font-bold text-slate-700 dark:text-slate-100 leading-tight">
+          <h1 className="relative z-10 mx-auto max-w-5xl text-center text-3xl sm:text-5xl md:text-5xl lg:text-8xl xl:text-9xl font-medium text-slate-700 dark:text-slate-100 leading-tight">
             {"Sai IT Solutions".split(" ").map((word, index) => (
               <motion.span
                 key={index}
@@ -68,8 +68,15 @@ export function HeroSection() {
                   ease: "easeInOut",
                 }}
                 className={
-                  "mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text  text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 drop-shadow-md dark:drop-shadow-2xl"
-                }
+                //   "mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text  text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 drop-shadow-md dark:drop-shadow-2xl"
+                //
+                //"mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-gray-200 via-gray-400 to-gray-600 dark:from-gray-300 dark:via-gray-500 dark:to-gray-900 drop-shadow-md dark:drop-shadow-2xl" 
+                //"mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-cyan-400 via-blue-500 to-purple-600 dark:from-cyan-300 dark:via-blue-400 dark:to-purple-500 drop-shadow-md dark:drop-shadow-2xl"
+                "mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-slate-300 via-blue-200 to-slate-600 dark:from-slate-200 dark:via-blue-100 dark:to-slate-500 drop-shadow-md dark:drop-shadow-2xl"
+              
+              //"mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-gray-200 via-zinc-300 to-stone-600 dark:from-gray-100 dark:via-zinc-200 dark:to-stone-500 drop-shadow-md dark:drop-shadow-2xl"
+                  
+            }
               >
                 {word}
               </motion.span>
