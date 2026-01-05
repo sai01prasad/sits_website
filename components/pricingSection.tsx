@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import PricingCard from "./ui/pricing-card";
 import { Meteors } from "./ui/meteors";
+import { DottedGlowBackground } from "./ui/dotted-glow-background";
 
 export default function PricingSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -45,7 +46,7 @@ export default function PricingSection() {
         "Priority support access",
         "Custom growth roadmap",
       ],
-      isHighlighted: true,
+    //   isHighlighted: true,
     },
     {
       title: "Enterprise Advisory",
@@ -263,10 +264,11 @@ export default function PricingSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
+           
             <div className="relative inline-flex items-center rounded-full border border-border bg-muted/50 p-1 backdrop-blur-sm">
               {/* Sliding background */}
               <motion.div
-                className="absolute inset-y-1 rounded-full bg-background shadow-lg"
+                className="absolute inset-y-1 rounded-full bg-background shadow-lg overflow-hidden"
                 animate={{
                   x: category === "consulting" ? 4 : "calc(100% + 4px)",
                   width: category === "consulting" ? "calc(50% - 8px)" : "calc(50% - 8px)",
@@ -276,13 +278,18 @@ export default function PricingSection() {
                   stiffness: 300,
                   damping: 30,
                 }}
-              />
+              >
+                {/* Meteors Animation */}
+                <Meteors number={60} />
+                
+              </motion.div>
               
               {/* Buttons */}
               <button
                 onClick={() => setCategory("consulting")}
                 className="relative z-10 px-8 py-3 text-sm font-medium transition-colors"
               >
+                
                 <motion.span
                   animate={{
                     color: category === "consulting" ? "hsl(var(--foreground))" : "hsl(var(--muted-foreground))",
@@ -297,6 +304,7 @@ export default function PricingSection() {
                 onClick={() => setCategory("development")}
                 className="relative z-10 px-8 py-3 text-sm font-medium transition-colors"
               >
+                
                 <motion.span
                   animate={{
                     color: category === "development" ? "hsl(var(--foreground))" : "hsl(var(--muted-foreground))",
@@ -304,7 +312,9 @@ export default function PricingSection() {
                   transition={{ duration: 0.3 }}
                 >
                   Development
+                  
                 </motion.span>
+                
               </button>
             </div>
           </motion.div>
@@ -389,7 +399,9 @@ export default function PricingSection() {
             </motion.div>
           ))}
         </motion.div>
+        
       </div>
+      
     </section>
   );
 }
