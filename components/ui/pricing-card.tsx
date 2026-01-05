@@ -57,7 +57,7 @@ export default function PricingCard({ plan }: PricingCardProps) {
         }}
       >
         {/* Meteors background effect */}
-        <Meteors number={20} />
+        {/* <Meteors number={20} /> */}
 
         {/* Content */}
         <div className="space-y-6 flex-1 flex flex-col relative z-10">
