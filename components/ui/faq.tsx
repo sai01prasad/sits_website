@@ -6,6 +6,7 @@ import { ChevronDown, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { GlowingEffect } from "./glowing-effect";
+import { BackgroundBeamsWithCollision } from "./background-beams-with-collision";
 
 interface FaqSectionProps extends React.HTMLAttributes<HTMLElement> {
   title: string;
@@ -35,69 +36,70 @@ export default React.forwardRef<HTMLElement, FaqSectionProps>(
     ref
   ) {
     return (
-      <section
-        ref={ref}
+      <BackgroundBeamsWithCollision
         className={cn(
-          "py-16 w-full px-3 flex flex-col items-center justify-center",
+          "py-16 w-full px-3 flex flex-col items-center justify-center !bg-transparent",
           className
         )}
-        {...props}
       >
-        <div className="container">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-2xl mx-auto text-center mb-12"
-          >
-            <h2 className="text-3xl font-semibold mb-3 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text text-transparent">
-              {title}
-            </h2>
-            {description && (
-              <p className="text-sm text-muted-foreground">{description}</p>
-            )}
-          </motion.div>
-
-          {/* FAQ Items */}
-          <div className="max-w-2xl mx-auto space-y-2">
-            {items?.map((item, index) => (
-              <FaqItem
-                key={index}
-                question={item.question}
-                answer={item.answer}
-                index={index}
-              />
-            ))}
-          </div>
-
-          {/* Contact Section */}
-          {contactInfo && (
+        <section
+          ref={ref}
+          className="w-full relative z-10"
+          {...props}
+        >
+          <div className="container">
+            {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="max-w-md mx-auto mt-12 p-6 rounded-lg text-center "
-              style={{
-                backdropFilter: "blur(10px)",
-                    }}
+              transition={{ duration: 0.5 }}
+              className="max-w-2xl mx-auto text-center mb-12"
             >
-              <div className="inline-flex items-center justify-center p-1.5 rounded-full mb-4">
-                <Mail className="h-4 w-4" />
-              </div>
-              <p className="text-sm font-medium text-foreground mb-1">
-                {contactInfo.title}
-              </p>
-              <p className="text-xs text-muted-foreground mb-4">
-                {contactInfo.description}
-              </p>
-              <Button size="sm" onClick={contactInfo.onContact}>
-                {contactInfo.buttonText}
-              </Button>
+              <h2 className="text-3xl font-semibold mb-3 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text text-transparent">
+                {title}
+              </h2>
+              {description && (
+                <p className="text-sm text-muted-foreground">{description}</p>
+              )}
             </motion.div>
-          )}
-        </div>
-      </section>
+
+            {/* FAQ Items */}
+            <div className="max-w-2xl mx-auto space-y-2">
+              {items?.map((item, index) => (
+                <FaqItem
+                  key={index}
+                  question={item.question}
+                  answer={item.answer}
+                  index={index}
+                />
+              ))}
+            </div>
+
+            {/* Contact Section */}
+            {contactInfo && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="max-w-md mx-auto mt-12 p-6 rounded-lg text-center"
+              >
+                <div className="inline-flex items-center justify-center p-1.5 rounded-full mb-4">
+                  <Mail className="h-4 w-4" />
+                </div>
+                <p className="text-sm font-medium text-foreground mb-1">
+                  {contactInfo.title}
+                </p>
+                <p className="text-xs text-muted-foreground mb-4">
+                  {contactInfo.description}
+                </p>
+                <Button size="sm" onClick={contactInfo.onContact}>
+                  {contactInfo.buttonText}
+                </Button>
+              </motion.div>
+            )}
+          </div>
+        </section>
+      </BackgroundBeamsWithCollision>
     );
   }
 );
@@ -126,15 +128,17 @@ const FaqItem = React.forwardRef<
       )}
     >
       {/* Glowing border effect */}
-      <GlowingEffect
-        blur={0}
-        borderWidth={2}
-        spread={80}
-        glow={true}
-        disabled={false}
-        proximity={64}
-        inactiveZone={0.01}
-      />
+      <div style={{ borderRadius: "0.5rem" }}>
+        <GlowingEffect
+          blur={0}
+          borderWidth={2}
+          spread={80}
+          glow={true}
+          disabled={false}
+          proximity={64}
+          inactiveZone={0.01}
+        />
+      </div>
       
       <div 
         className={cn(

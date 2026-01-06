@@ -5,6 +5,8 @@ import { useRef, useState } from "react";
 import PricingCard from "./ui/pricing-card";
 import { Meteors } from "./ui/meteors";
 import { DottedGlowBackground } from "./ui/dotted-glow-background";
+import { BackgroundRippleEffect } from "./ui/background-ripple-effect";
+import { BackgroundBeams } from "./ui/background-beams";
 
 export default function PricingSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -235,6 +237,7 @@ export default function PricingSection() {
     >
       <div className="relative">
         {/* Background Effects */}
+        
         <div className="absolute w-full h-full overflow-hidden">
           <div className="absolute w-[1000px] h-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-b from-primary/10 to-transparent blur-3xl" />
         </div>
