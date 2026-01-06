@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { GlowingEffect } from "./glowing-effect";
 
 /**
  * 1. External Particle Class
@@ -93,6 +94,75 @@ interface FooterProps {
   }[];
   bottomText?: string;
 }
+
+// Custom Glowing Line Component
+const GlowingLine = ({ className }: { className?: string }) => {
+  const lineRef = useRef<HTMLDivElement>(null);
+  const [mouseX, setMouseX] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (lineRef.current) {
+        const rect = lineRef.current.getBoundingClientRect();
+        const relativeX = e.clientX - rect.left;
+        const percentage = (relativeX / rect.width) * 100;
+        setMouseX(percentage);
+        
+        // Check if mouse is near the line (within 100px vertically)
+        const isNear = e.clientY >= rect.top - 100 && e.clientY <= rect.bottom + 100;
+        setIsHovering(isNear);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <div 
+      ref={lineRef}
+      className={cn("absolute inset-x-0 h-px overflow-visible", className)}
+    >
+      {/* Base line */}
+      <div className="absolute inset-0 bg-neutral-200/50 dark:bg-neutral-800/50" />
+      
+      {/* Animated glow */}
+      <motion.div
+        className="absolute inset-0 h-px"
+        style={{
+          background: `linear-gradient(90deg, 
+            rgba(99, 102, 241, 0) 0%, 
+            rgba(99, 102, 241, 0.8) ${mouseX}%, 
+            rgba(139, 92, 246, 0.6) ${mouseX + 5}%, 
+            rgba(168, 85, 247, 0) 100%)`,
+          opacity: isHovering ? 1 : 0,
+          transition: 'opacity 0.3s ease',
+        }}
+      />
+      
+      {/* Glow spot */}
+      <motion.div
+        className="absolute top-1/2 -translate-y-1/2 w-32 h-8 rounded-full blur-xl"
+        style={{
+          left: `${mouseX}%`,
+          transform: 'translate(-50%, -50%)',
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.6) 0%, rgba(139, 92, 246, 0.4) 30%, transparent 70%)',
+          opacity: isHovering ? 1 : 0,
+          transition: 'opacity 0.3s ease',
+        }}
+        animate={{
+          left: `${mouseX}%`,
+        }}
+        transition={{
+          type: "spring",
+          damping: 30,
+          stiffness: 200,
+        }}
+      />
+    </div>
+  );
+};
 
 export default function Footer({
   className,
@@ -208,13 +278,16 @@ export default function Footer({
 
   return (
     <footer className={cn("relative w-full overflow-hidden bg-white dark:bg-neutral-950", className)}>
+      {/* Top border with glowing effect */}
+      <GlowingLine className="top-0 z-20" />
+      
       {/* Animated liquid background */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
         style={{ height: "100%" }}
       />
-
+      
       {/* Smooth gradient transition from above section */}
       <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/0 via-white/50 to-white dark:from-neutral-950/0 dark:via-neutral-950/50 dark:to-neutral-950 pointer-events-none" />
       
@@ -274,8 +347,11 @@ export default function Footer({
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-neutral-200/80 dark:border-neutral-800/80">
+        {/* Bottom bar with glowing divider */}
+        <div className="relative pt-8">
+          {/* Glowing divider line */}
+          <GlowingLine className="top-0" />
+        
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 text-center md:text-left order-2 md:order-1">
               {bottomText}
@@ -294,6 +370,7 @@ export default function Footer({
 
       {/* Decorative Glow */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-indigo-500/10 via-transparent to-transparent pointer-events-none" />
+      
     </footer>
   );
 }
