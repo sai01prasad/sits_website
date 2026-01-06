@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -153,9 +153,16 @@ export default function Footer({
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
+    // Check if mobile device (screen width < 768px for mobile)
+    const isMobile = window.innerWidth < 768;
+    
+    // Adjust particle count based on screen size
+    // Mobile: 30 particles, Tablet/Desktop: 150 particles
+    const particleCount = isMobile ? 30 : 150;
+
     // Create particles array using the external class
     const particles: Particle[] = Array.from(
-      { length: 150 },
+      { length: particleCount },
       () => new Particle(canvasWidth)
     );
 
