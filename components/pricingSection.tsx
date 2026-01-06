@@ -67,57 +67,57 @@ export default function PricingSection() {
     },
   ];
 
-  const consultingYearly = [
-    {
-      title: "Strategy Starter",
-      price: "$8000",
-      period: "/year",
-      description:
-        "Perfect for businesses needing strategic guidance and consulting expertise.",
-      features: [
-        "15 hours of consulting/month",
-        "Strategic business planning",
-        "Market analysis & research",
-        "Monthly strategy sessions",
-        "Email and phone support",
-        "Quarterly business reviews",
-        "Save $1,600 annually",
-      ],
-    },
-    {
-      title: "Growth Accelerator",
-      price: "$15000",
-      period: "/year",
-      description:
-        "Ideal for growing businesses that need comprehensive consulting support.",
-      features: [
-        "30 hours of consulting/month",
-        "Advanced strategy development",
-        "Competitive intelligence",
-        "Bi-weekly consulting sessions",
-        "Priority support access",
-        "Custom growth roadmap",
-        "Save $3,000 annually",
-      ],
-      isHighlighted: true,
-    },
-    {
-      title: "Enterprise Advisory",
-      price: "$30000",
-      period: "/year",
-      description:
-        "Best for established businesses requiring extensive consulting and advisory services.",
-      features: [
-        "60 hours of consulting/month",
-        "Executive-level advisory",
-        "Full market & operational analysis",
-        "Weekly strategic sessions",
-        "24/7 priority support",
-        "Dedicated account manager",
-        "Save $6,000 annually",
-      ],
-    },
-  ];
+  // const consultingYearly = [
+  //   {
+  //     title: "Strategy Starter",
+  //     price: "$8000",
+  //     period: "/year",
+  //     description:
+  //       "Perfect for businesses needing strategic guidance and consulting expertise.",
+  //     features: [
+  //       "15 hours of consulting/month",
+  //       "Strategic business planning",
+  //       "Market analysis & research",
+  //       "Monthly strategy sessions",
+  //       "Email and phone support",
+  //       "Quarterly business reviews",
+  //       "Save $1,600 annually",
+  //     ],
+  //   },
+  //   {
+  //     title: "Growth Accelerator",
+  //     price: "$15000",
+  //     period: "/year",
+  //     description:
+  //       "Ideal for growing businesses that need comprehensive consulting support.",
+  //     features: [
+  //       "30 hours of consulting/month",
+  //       "Advanced strategy development",
+  //       "Competitive intelligence",
+  //       "Bi-weekly consulting sessions",
+  //       "Priority support access",
+  //       "Custom growth roadmap",
+  //       "Save $3,000 annually",
+  //     ],
+  //     isHighlighted: true,
+  //   },
+  //   {
+  //     title: "Enterprise Advisory",
+  //     price: "$30000",
+  //     period: "/year",
+  //     description:
+  //       "Best for established businesses requiring extensive consulting and advisory services.",
+  //     features: [
+  //       "60 hours of consulting/month",
+  //       "Executive-level advisory",
+  //       "Full market & operational analysis",
+  //       "Weekly strategic sessions",
+  //       "24/7 priority support",
+  //       "Dedicated account manager",
+  //       "Save $6,000 annually",
+  //     ],
+  //   },
+  // ];
 
   const developmentMonthly = [
     {
@@ -168,57 +168,57 @@ export default function PricingSection() {
     },
   ];
 
-  const developmentYearly = [
-    {
-      title: "Build Starter",
-      price: "$12000",
-      period: "/year",
-      description:
-        "Perfect for startups and small businesses launching their first digital products.",
-      features: [
-        "20 hours of development/month",
-        "Web or mobile app development",
-        "Basic UI/UX design",
-        "Monthly code reviews",
-        "Bug fixes & maintenance",
-        "1 custom integration",
-        "Save $2,400 annually",
-      ],
-    },
-    {
-      title: "Scale Pro",
-      price: "$25000",
-      period: "/year",
-      description:
-        "Ideal for growing businesses that need robust development and technical support.",
-      features: [
-        "50 hours of development/month",
-        "Full-stack development",
-        "Advanced UI/UX design",
-        "Bi-weekly sprint planning",
-        "Priority bug resolution",
-        "3 custom integrations",
-        "Save $5,000 annually",
-      ],
-      isHighlighted: true,
-    },
-    {
-      title: "Enterprise Build",
-      price: "$50000",
-      period: "/year",
-      description:
-        "Best for enterprises needing comprehensive development and dedicated engineering teams.",
-      features: [
-        "120 hours of development/month",
-        "Dedicated dev team",
-        "Complex architecture design",
-        "Weekly sprint reviews",
-        "24/7 technical support",
-        "Unlimited integrations",
-        "Save $10,000 annually",
-      ],
-    },
-  ];
+  // const developmentYearly = [
+  //   {
+  //     title: "Build Starter",
+  //     price: "$12000",
+  //     period: "/year",
+  //     description:
+  //       "Perfect for startups and small businesses launching their first digital products.",
+  //     features: [
+  //       "20 hours of development/month",
+  //       "Web or mobile app development",
+  //       "Basic UI/UX design",
+  //       "Monthly code reviews",
+  //       "Bug fixes & maintenance",
+  //       "1 custom integration",
+  //       "Save $2,400 annually",
+  //     ],
+  //   },
+  //   {
+  //     title: "Scale Pro",
+  //     price: "$25000",
+  //     period: "/year",
+  //     description:
+  //       "Ideal for growing businesses that need robust development and technical support.",
+  //     features: [
+  //       "50 hours of development/month",
+  //       "Full-stack development",
+  //       "Advanced UI/UX design",
+  //       "Bi-weekly sprint planning",
+  //       "Priority bug resolution",
+  //       "3 custom integrations",
+  //       "Save $5,000 annually",
+  //     ],
+  //     isHighlighted: true,
+  //   },
+  //   {
+  //     title: "Enterprise Build",
+  //     price: "$50000",
+  //     period: "/year",
+  //     description:
+  //       "Best for enterprises needing comprehensive development and dedicated engineering teams.",
+  //     features: [
+  //       "120 hours of development/month",
+  //       "Dedicated dev team",
+  //       "Complex architecture design",
+  //       "Weekly sprint reviews",
+  //       "24/7 technical support",
+  //       "Unlimited integrations",
+  //       "Save $10,000 annually",
+  //     ],
+  //   },
+  // ];
 
   const getPlans = () => {
     if (category === "consulting") {
@@ -323,7 +323,7 @@ export default function PricingSection() {
           </motion.div>
 
           {/* Billing Cycle Toggle */}
-          <motion.div
+          {/* <motion.div
             className="mt-6 flex items-center justify-center gap-4"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -372,7 +372,7 @@ export default function PricingSection() {
                 Save 20%
               </span>
             </span>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
 
         <motion.div
