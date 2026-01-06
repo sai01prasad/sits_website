@@ -38,7 +38,7 @@ export default React.forwardRef<HTMLElement, FaqSectionProps>(
     return (
       <BackgroundBeamsWithCollision
         className={cn(
-          "py-16 w-full px-3 flex flex-col items-center justify-center !bg-transparent",
+          "py-16 w-full px-3 flex flex-col items-center justify-center !bg-transparent !h-auto isolate",
           className
         )}
       >
