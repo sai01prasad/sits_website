@@ -1,4 +1,5 @@
 
+import FaqSection from "@/components/faqSection";
 import { HeroSection } from "@/components/heroSection";
 import { NavBar } from "@/components/navBar";
 import PricingSection from "@/components/pricingSection";
@@ -16,6 +17,7 @@ export default function Home() {
      
       {/* <Services/> */}
       <PricingSection/>
+      <FaqSection />
     </div>
   );
 }
