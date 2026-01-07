@@ -3,8 +3,8 @@
 import { motion, useAnimationFrame } from "framer-motion";
 import { Check } from "lucide-react";
 import { useRef } from "react";
-import { Meteors } from "./meteors";
-import { GlowingEffect } from "./glowing-effect";
+import { Meteors } from "../../../ui/meteors";
+import { GlowingEffect } from "../../../ui/glowing-effect";
 
 interface Plan {
   title: string;
@@ -59,16 +59,16 @@ export default function PricingCard({ plan }: PricingCardProps) {
       </div>
       {/* Card glow effect - all sides */}
       <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-indigo-500/20 via-indigo-500/40 to-indigo-500/20 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
-     
+
       {/* Card container with navbar-style backdrop blur and shadow */}
-      <div 
+      <div
         className="relative rounded-3xl bg-white/80 dark:bg-neutral-950/80 p-8 h-full flex flex-col overflow-hidden"
         style={{
           backdropFilter: "blur(10px)",
-          boxShadow: "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+          boxShadow:
+            "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset",
         }}
       >
-        
         {/* Meteors background effect */}
         {/* <Meteors number={20} /> */}
 
@@ -161,7 +161,6 @@ export default function PricingCard({ plan }: PricingCardProps) {
               <span className="relative text-lg font-normal">Subscribe</span>
               <Meteors number={20} />
             </motion.button>
-            
           </div>
         </div>
       </div>

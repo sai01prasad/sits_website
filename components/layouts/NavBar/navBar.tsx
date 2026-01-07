@@ -10,7 +10,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
   DarkModeToggle,
-} from "@/components/ui/resizable-navbar";
+} from "@/components/layouts/NavBar/resizable-navbar";
 import { useState } from "react";
 
 export function NavBar() {

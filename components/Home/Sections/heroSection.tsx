@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { motion } from "motion/react";
-import { Boxes } from "./ui/background-boxes";
-import { BackgroundBeams } from "./ui/background-beams";
+
+import { BackgroundBeams } from "../..//ui/backgrounds/background-beams";
 
 export function HeroSection() {
   const [isDark, setIsDark] = useState<boolean>(() => {
@@ -68,15 +68,14 @@ export function HeroSection() {
                   ease: "easeInOut",
                 }}
                 className={
-                //   "mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text  text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 drop-shadow-md dark:drop-shadow-2xl"
-                //
-                //"mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-gray-200 via-gray-400 to-gray-600 dark:from-gray-300 dark:via-gray-500 dark:to-gray-900 drop-shadow-md dark:drop-shadow-2xl" 
-                //"mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-cyan-400 via-blue-500 to-purple-600 dark:from-cyan-300 dark:via-blue-400 dark:to-purple-500 drop-shadow-md dark:drop-shadow-2xl"
-                "mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-slate-300 via-blue-200 to-slate-600 dark:from-slate-200 dark:via-blue-100 dark:to-slate-500 drop-shadow-md dark:drop-shadow-2xl"
-              
-              //"mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-gray-200 via-zinc-300 to-stone-600 dark:from-gray-100 dark:via-zinc-200 dark:to-stone-500 drop-shadow-md dark:drop-shadow-2xl"
-                  
-            }
+                  //   "mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text  text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 drop-shadow-md dark:drop-shadow-2xl"
+                  //
+                  //"mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-gray-200 via-gray-400 to-gray-600 dark:from-gray-300 dark:via-gray-500 dark:to-gray-900 drop-shadow-md dark:drop-shadow-2xl"
+                  //"mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-cyan-400 via-blue-500 to-purple-600 dark:from-cyan-300 dark:via-blue-400 dark:to-purple-500 drop-shadow-md dark:drop-shadow-2xl"
+                  "mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-slate-300 via-blue-200 to-slate-600 dark:from-slate-200 dark:via-blue-100 dark:to-slate-500 drop-shadow-md dark:drop-shadow-2xl"
+
+                  //"mr-1 sm:mr-2 md:mr-4 lg:mr-6 inline-block bg-clip-text text-transparent bg-gradient-to-b from-gray-200 via-zinc-300 to-stone-600 dark:from-gray-100 dark:via-zinc-200 dark:to-stone-500 drop-shadow-md dark:drop-shadow-2xl"
+                }
               >
                 {word}
               </motion.span>

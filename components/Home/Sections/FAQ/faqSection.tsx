@@ -1,6 +1,6 @@
 "use client";
 
-import Faq from "@/components/ui/faq";
+import Faq from "@/components/Home/Sections/FAQ/faq";
 import { div } from "motion/react-client";
 
 const DEMO_FAQS = [
@@ -23,7 +23,6 @@ const DEMO_FAQS = [
 
 export default function FaqSection() {
   return (
-    
     <Faq
       title="Frequently Asked Questions"
       description="Everything you need to know about our platform"
@@ -34,8 +33,6 @@ export default function FaqSection() {
         buttonText: "Contact Support",
         onContact: () => console.log("Contact support clicked"),
       }}
-      
     />
-    
   );
 }

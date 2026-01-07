@@ -3,11 +3,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { GlowingEffect } from "./glowing-effect";
+import { GlowingEffect } from "../../ui/glowing-effect";
 
 /**
  * 1. External Particle Class
- * Moved outside the component to prevent compilation errors and 
+ * Moved outside the component to prevent compilation errors and
  * optimize performance during re-renders.
  */
 class Particle {
@@ -57,7 +57,11 @@ class Particle {
     }
 
     // Recycle particle
-    if (this.y > canvasHeight + 20 || this.x < -20 || this.x > canvasWidth + 20) {
+    if (
+      this.y > canvasHeight + 20 ||
+      this.x < -20 ||
+      this.x > canvasWidth + 20
+    ) {
       this.reset(canvasWidth);
     }
   }
@@ -69,10 +73,14 @@ class Particle {
     ctx.fill();
 
     const gradient = ctx.createRadialGradient(
-      this.x, this.y, 0,
-      this.x, this.y, this.radius * 3
+      this.x,
+      this.y,
+      0,
+      this.x,
+      this.y,
+      this.radius * 3
     );
-    gradient.addColorStop(0, this.color + (this.alpha * 0.5) + ")");
+    gradient.addColorStop(0, this.color + this.alpha * 0.5 + ")");
     gradient.addColorStop(1, this.color + "0)");
     ctx.fillStyle = gradient;
     ctx.fill();
@@ -108,25 +116,26 @@ const GlowingLine = ({ className }: { className?: string }) => {
         const relativeX = e.clientX - rect.left;
         const percentage = (relativeX / rect.width) * 100;
         setMouseX(percentage);
-        
+
         // Check if mouse is near the line (within 100px vertically)
-        const isNear = e.clientY >= rect.top - 100 && e.clientY <= rect.bottom + 100;
+        const isNear =
+          e.clientY >= rect.top - 100 && e.clientY <= rect.bottom + 100;
         setIsHovering(isNear);
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
-    <div 
+    <div
       ref={lineRef}
       className={cn("absolute inset-x-0 h-px overflow-visible", className)}
     >
       {/* Base line */}
       <div className="absolute inset-0 bg-neutral-200/50 dark:bg-neutral-800/50" />
-      
+
       {/* Animated glow */}
       <motion.div
         className="absolute inset-0 h-px"
@@ -137,19 +146,20 @@ const GlowingLine = ({ className }: { className?: string }) => {
             rgba(139, 92, 246, 0.6) ${mouseX + 5}%, 
             rgba(168, 85, 247, 0) 100%)`,
           opacity: isHovering ? 1 : 0,
-          transition: 'opacity 0.3s ease',
+          transition: "opacity 0.3s ease",
         }}
       />
-      
+
       {/* Glow spot */}
       <motion.div
         className="absolute top-1/2 -translate-y-1/2 w-32 h-8 rounded-full blur-xl"
         style={{
           left: `${mouseX}%`,
-          transform: 'translate(-50%, -50%)',
-          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.6) 0%, rgba(139, 92, 246, 0.4) 30%, transparent 70%)',
+          transform: "translate(-50%, -50%)",
+          background:
+            "radial-gradient(circle, rgba(99, 102, 241, 0.6) 0%, rgba(139, 92, 246, 0.4) 30%, transparent 70%)",
           opacity: isHovering ? 1 : 0,
-          transition: 'opacity 0.3s ease',
+          transition: "opacity 0.3s ease",
         }}
         animate={{
           left: `${mouseX}%`,
@@ -225,7 +235,7 @@ export default function Footer({
 
     // Check if mobile device (screen width < 768px for mobile)
     const isMobile = window.innerWidth < 768;
-    
+
     // Adjust particle count based on screen size
     // Mobile: 30 particles, Tablet/Desktop: 150 particles
     const particleCount = isMobile ? 30 : 150;
@@ -247,20 +257,25 @@ export default function Footer({
 
       // Liquid pool at bottom
       ctx.globalCompositeOperation = "source-over";
-      const poolGradient = ctx.createLinearGradient(0, canvasHeight - 150, 0, canvasHeight);
+      const poolGradient = ctx.createLinearGradient(
+        0,
+        canvasHeight - 150,
+        0,
+        canvasHeight
+      );
       poolGradient.addColorStop(0, "rgba(99, 102, 241, 0)");
       poolGradient.addColorStop(0.3, "rgba(99, 102, 241, 0.05)");
       poolGradient.addColorStop(1, "rgba(99, 102, 241, 0.15)");
-      
+
       ctx.fillStyle = poolGradient;
       ctx.beginPath();
       ctx.moveTo(0, canvasHeight);
-      
+
       for (let x = 0; x <= canvasWidth; x += 20) {
         const wave = Math.sin(x * 0.02 + Date.now() * 0.001) * 8;
         ctx.lineTo(x, canvasHeight - 100 + wave);
       }
-      
+
       ctx.lineTo(canvasWidth, canvasHeight);
       ctx.closePath();
       ctx.fill();
@@ -277,20 +292,25 @@ export default function Footer({
   }, []);
 
   return (
-    <footer className={cn("relative w-full overflow-hidden bg-white dark:bg-neutral-950", className)}>
+    <footer
+      className={cn(
+        "relative w-full overflow-hidden bg-white dark:bg-neutral-950",
+        className
+      )}
+    >
       {/* Top border with glowing effect */}
       <GlowingLine className="top-0 z-20" />
-      
+
       {/* Animated liquid background */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
         style={{ height: "100%" }}
       />
-      
+
       {/* Smooth gradient transition from above section */}
       <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/0 via-white/50 to-white dark:from-neutral-950/0 dark:via-neutral-950/50 dark:to-neutral-950 pointer-events-none" />
-      
+
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <div className="flex flex-col lg:flex-row lg:justify-between gap-12 lg:gap-16 mb-12">
@@ -306,7 +326,7 @@ export default function Footer({
             <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8 max-w-sm">
               {description}
             </p>
-            
+
             {socialLinks.length > 0 && (
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                 {socialLinks.map((social, index) => (
@@ -329,14 +349,20 @@ export default function Footer({
           {/* Links area */}
           <div className="flex flex-col md:flex-row md:justify-center lg:justify-end gap-12 md:gap-16 lg:gap-20">
             {sections.map((section, index) => (
-              <div key={index} className="flex flex-col items-center md:items-start text-center md:text-left min-w-[140px]">
+              <div
+                key={index}
+                className="flex flex-col items-center md:items-start text-center md:text-left min-w-[140px]"
+              >
                 <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 mb-5">
                   {section.title}
                 </h3>
                 <ul className="space-y-3.5">
                   {section.links.map((link, linkIndex) => (
                     <motion.li key={linkIndex} whileHover={{ x: 4 }}>
-                      <a href={link.href} className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-indigo-500 transition-colors">
+                      <a
+                        href={link.href}
+                        className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-indigo-500 transition-colors"
+                      >
                         {link.name}
                       </a>
                     </motion.li>
@@ -351,16 +377,22 @@ export default function Footer({
         <div className="relative pt-8">
           {/* Glowing divider line */}
           <GlowingLine className="top-0" />
-        
+
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 text-center md:text-left order-2 md:order-1">
               {bottomText}
             </p>
             <div className="flex gap-6 order-1 md:order-2">
-              <a href="#privacy" className="text-xs text-neutral-600 dark:text-neutral-400 hover:text-indigo-500 font-medium">
+              <a
+                href="#privacy"
+                className="text-xs text-neutral-600 dark:text-neutral-400 hover:text-indigo-500 font-medium"
+              >
                 Privacy Policy
               </a>
-              <a href="#terms" className="text-xs text-neutral-600 dark:text-neutral-400 hover:text-indigo-500 font-medium">
+              <a
+                href="#terms"
+                className="text-xs text-neutral-600 dark:text-neutral-400 hover:text-indigo-500 font-medium"
+              >
                 Terms of Service
               </a>
             </div>
@@ -370,7 +402,6 @@ export default function Footer({
 
       {/* Decorative Glow */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-indigo-500/10 via-transparent to-transparent pointer-events-none" />
-      
     </footer>
   );
 }

@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { GlowingEffect } from "./glowing-effect";
-import { BackgroundBeamsWithCollision } from "./background-beams-with-collision";
+import { GlowingEffect } from "../../../ui/glowing-effect";
+import { BackgroundBeamsWithCollision } from "../../../ui/backgrounds/background-beams-with-collision";
 
 interface FaqSectionProps extends React.HTMLAttributes<HTMLElement> {
   title: string;
@@ -139,8 +139,8 @@ const FaqItem = React.forwardRef<
           inactiveZone={0.01}
         />
       </div>
-      
-      <div 
+
+      <div
         className={cn(
           "bg-white/80 dark:bg-neutral-950/80 relative rounded-lg",
           "transition-all duration-200",
@@ -148,7 +148,8 @@ const FaqItem = React.forwardRef<
         )}
         style={{
           backdropFilter: "blur(10px)",
-          boxShadow: "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+          boxShadow:
+            "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset",
         }}
       >
         <Button
@@ -174,7 +175,9 @@ const FaqItem = React.forwardRef<
             className={cn(
               "p-0.5 rounded-full shrink-0",
               "transition-colors duration-200",
-              isOpen ? "text-indigo-500" : "text-neutral-600 dark:text-neutral-400"
+              isOpen
+                ? "text-indigo-500"
+                : "text-neutral-600 dark:text-neutral-400"
             )}
           >
             <ChevronDown className="h-4 w-4" />
