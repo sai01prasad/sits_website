@@ -44,10 +44,10 @@ export default React.forwardRef<HTMLElement, FaqSectionProps>(
       >
         <section
           ref={ref}
-          className="w-full relative z-10"
+          className="w-full max-w-7xl mx-auto relative z-10"
           {...props}
         >
-          <div className="container">
+          <div className="container mx-auto">
             {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
