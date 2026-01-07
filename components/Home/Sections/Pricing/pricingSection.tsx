@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import PricingCard from "./pricing-card";
-import { Meteors } from "../../../ui/meteors";
+import { Meteors } from "@/components/ui/meteors";
 
 
 export default function PricingSection() {

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { motion } from "motion/react";
 
-import { BackgroundBeams } from "../..//ui/backgrounds/background-beams";
+import { BackgroundBeams } from "@/components/ui/backgrounds/background-beams";
 
 export function HeroSection() {
   const [isDark, setIsDark] = useState<boolean>(() => {
