@@ -8,6 +8,7 @@ import { DottedGlowBackground } from "@/components/ui/backgrounds/dotted-glow-ba
 import Footer from "@/components/layouts/NavBar/footer";
 import Image from "next/image";
 import Services from "@/components/Home/Sections/services";
+import SecurityCards from "@/components/Home/Sections/services";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <HeroSection />
 
       {/* <Services/> */}
+      <SecurityCards />
       {/* <Services/> */}
       <PricingSection />
       <FaqSection />
