@@ -100,11 +100,11 @@ export default function SecurityCards() {
             containerClassName="h-[300px]"
             className="flex flex-col justify-center"
           >
-            <h3 className="text-2xl font-semibold text-white">
+            <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
               {service.title}
             </h3>
 
-            <p className="mt-4 text-sm leading-relaxed text-white/80">
+            <p className="mt-4 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
               {service.description}
             </p>
           </WobbleCard>
