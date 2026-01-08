@@ -63,8 +63,30 @@ export const WobbleCard = ({
     ["--repeating-conic-gradient-times" as any]: 3,
   }}
 />
+{/* High-intensity neon border glow */}
+<div
+  className="pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300"
+  style={{
+    opacity: hovered ? 1 : 0,
+    padding: "3px", // much thicker border
+    filter: "blur(6px) brightness(1.8) saturate(2.8)",
+    background: `
+      linear-gradient(
+        135deg,
+        #4338CA,  /* deep electric indigo */
+        #9333EA,  /* strong neon purple */
+        #E879F9,  /* hot pink neon */
+        #4338CA
+      )
+    `,
+    WebkitMask:
+      "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+    WebkitMaskComposite: "xor",
+    maskComposite: "exclude",
+  }}
+/>
 {/* Transparent glass surface */}
-      <div className="relative h-full rounded-2xl border border-white/30 bg-white/5 backdrop-blur-2xl shadow-lg">
+     <div className="relative z-10 h-full rounded-2xl border border-white/30 bg-white/5 backdrop-blur-2xl shadow-lg">
         <motion.div
           style={{
             transform: hovered
@@ -124,9 +146,6 @@ export const WobbleCard = ({
     />
   </svg>
 </motion.button>
-
-
-
         </motion.div>
       </div>
     </motion.section>
