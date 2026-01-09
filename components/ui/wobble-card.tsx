@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
-import { Meteors } from "@/components/ui/meteors";
+// GlowingEffect removed to keep wobble/parallax behavior
 
 export const WobbleCard = ({
   children,
@@ -39,56 +39,25 @@ export const WobbleCard = ({
         transition: "transform 0.12s ease-out",
       }}
       className={cn(
-        "relative mx-auto w-full overflow-hidden rounded-2xl",
+        "relative mx-auto w-full overflow-hidden rounded-2xl group",
         containerClassName
       )}
     >
-      {/* Conic gradient hover glow */}
-<div
-  className="pointer-events-none absolute inset-0 transition-opacity duration-300"
-  style={{
-    opacity: hovered ? 0.95 : 0,
-    filter: "blur(90px)",
-    transform: "scale(1.5)",
-    maskImage: "radial-gradient(circle at center, transparent 20%, black 85%)",
-    background: `
-      repeating-conic-gradient(
-        from 236.84deg at 50% 50%,
-        rgba(68, 71, 246, 0.6) 0%,
-        rgba(139,92,246,0.55) calc(25% / var(--repeating-conic-gradient-times)),
-        rgba(167, 74, 253, 0.48) calc(50% / var(--repeating-conic-gradient-times)),
-        rgba(71, 73, 241, 0.55) calc(75% / var(--repeating-conic-gradient-times)),
-        rgba(118, 70, 228, 0.6) calc(100% / var(--repeating-conic-gradient-times))
-      )
-    `,
-    ["--repeating-conic-gradient-times" as any]: 1,
-  }}
-/>
-{/* High-intensity neon border glow */}
-<div
-  className="pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300"
-  style={{
-    opacity: hovered ? 1 : 0,
-    padding: "10px", // much thicker border for high visibility
-    filter: "blur(12px) brightness(2.8) saturate(3.8)",
-    background: `
-      linear-gradient(
-        135deg,
-        #3d34e9ff,  /* intense indigo */
-        #A78BFA,  /* vivid lavender */
-        #FB7185,  /* bright pink */
-        #4F46E5
-      )
-    `,
-    boxShadow: "0 0 40px rgba(168,85,247,0.75), 0 0 100px rgba(168,85,247,0.45), 0 10px 40px rgba(0,0,0,0.08)",
-    WebkitMask:
-      "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-    WebkitMaskComposite: "xor",
-    maskComposite: "exclude",
-  }}
-/>
-{/* Transparent glass surface */}
-    <div className="relative z-10 h-full rounded-2xl border border-neutral-200/40 bg-white/80 dark:bg-neutral-950/80 dark:border-white/30 backdrop-blur-2xl shadow-[0_20px_60px_rgba(15,23,42,0.12)] dark:shadow-[0_8px_30px_rgba(2,6,23,0.8)]">
+      {/* Non-interactive CSS hover glow (behind content) */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          zIndex: 0,
+          background:
+            "linear-gradient(135deg, rgba(124,58,237,0.50), rgba(99,102,241,0.42), rgba(59,130,246,0.32))",
+          filter: "blur(32px) saturate(1.35) brightness(1.08)",
+          boxShadow:
+            "0 30px 160px rgba(124,58,237,0.60), 0 0 280px rgba(99,102,241,0.42), 0 0 100px rgba(59,130,246,0.30)",
+        }}
+      />
+
+      {/* Card content */}
+      <div className="relative z-10 h-full rounded-2xl border border-black/40 bg-white/80 dark:bg-neutral-950/80 dark:border-white/30 backdrop-blur-2xl shadow-[0_40px_140px_rgba(15,23,42,0.22)] dark:shadow-[0_8px_30px_rgba(2,6,23,0.8)]">
         <motion.div
           style={{
             transform: hovered
@@ -98,8 +67,7 @@ export const WobbleCard = ({
           }}
           className={cn("relative h-full px-6 py-16 sm:px-8", className)}
         >
-          <Noise />
-          {hovered && <Meteors number={18} className="pointer-events-none" />}
+         {/* <Noise /> */}
           {children}
 <motion.button
   type="button"
@@ -150,7 +118,7 @@ const Noise = () => (
   <div
     className="pointer-events-none absolute inset-0 opacity-[0.05]"
     style={{
-      backgroundImage: "url(/noise.webp)",
+     // backgroundImage: "url(/noise.webp)",
       backgroundSize: "30%",
       maskImage: "radial-gradient(white, transparent 70%)",
     }}
